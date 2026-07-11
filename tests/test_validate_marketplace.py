@@ -18,7 +18,7 @@ VALIDATOR = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(VALIDATOR)
 
 
-VALID_SHA = "eab4509bab949c3dafbdbc169626e9eb5f1925c2"
+VALID_SHA = "0eb23f881a373ad4dc203e1f3c6f061927e01c60"
 
 
 def valid_catalog() -> dict[str, Any]:
@@ -171,7 +171,7 @@ class MarketplaceValidationTests(unittest.TestCase):
 
         def remote_loader(url: str) -> dict[str, str]:
             requested_urls.append(url)
-            return {"name": "project-legibility", "version": "0.1.0"}
+            return {"name": "project-legibility", "version": "0.2.0"}
 
         errors = self.validate(
             valid_catalog(), verify_remote=True, remote_loader=remote_loader
