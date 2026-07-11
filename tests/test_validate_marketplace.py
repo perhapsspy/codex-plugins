@@ -18,7 +18,7 @@ VALIDATOR = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(VALIDATOR)
 
 
-VALID_SHA = "0eb23f881a373ad4dc203e1f3c6f061927e01c60"
+VALID_SHA = "997005987b8a700b77eec78f481160474f51024f"
 
 
 def valid_catalog() -> dict[str, Any]:
