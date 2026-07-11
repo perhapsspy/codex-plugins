@@ -22,7 +22,7 @@ codex plugin add project-legibility@perhapsspy
 
 | 이름 | 용도 | 소스 |
 |---|---|---|
-| Project Legibility | 여러 작업에 걸친 저장소 개발을 이어가고 포팅 기준, 비동기 상태와 문서를 점검하는 10개 스킬 | [perhapsspy/project-legibility](https://github.com/perhapsspy/project-legibility) |
+| Project Legibility | 여러 작업에 걸친 저장소 개발을 이어가고 포팅 기준, 비동기 상태와 문서를 점검하는 스킬 묶음 | [perhapsspy/project-legibility](https://github.com/perhapsspy/project-legibility) |
 
 각 플러그인의 사용법과 변경 내역은 소스 저장소에서 확인할 수 있습니다.
 
@@ -32,7 +32,7 @@ codex plugin add project-legibility@perhapsspy
 # 마켓플레이스 목록 갱신
 codex plugin marketplace upgrade perhapsspy
 
-# catalog가 가리키는 버전으로 다시 설치
+# 카탈로그가 가리키는 버전으로 다시 설치
 codex plugin add project-legibility@perhapsspy
 
 # 플러그인 제거

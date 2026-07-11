@@ -171,7 +171,7 @@ class MarketplaceValidationTests(unittest.TestCase):
 
         def remote_loader(url: str) -> dict[str, str]:
             requested_urls.append(url)
-            return {"name": "project-legibility", "version": "0.2.0"}
+            return {"name": "project-legibility", "version": "0.2.1"}
 
         errors = self.validate(
             valid_catalog(), verify_remote=True, remote_loader=remote_loader

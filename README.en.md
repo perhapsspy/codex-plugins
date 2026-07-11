@@ -22,7 +22,7 @@ codex plugin add project-legibility@perhapsspy
 
 | Name | Purpose | Source |
 |---|---|---|
-| Project Legibility | Ten skills for continuing repository work across tasks and checking port sources, async state, and documentation | [perhapsspy/project-legibility](https://github.com/perhapsspy/project-legibility) |
+| Project Legibility | Skills for continuing repository work across tasks and checking port sources, async state, and documentation | [perhapsspy/project-legibility](https://github.com/perhapsspy/project-legibility) |
 
 Usage and release notes for each plugin live in its source repository.
 
