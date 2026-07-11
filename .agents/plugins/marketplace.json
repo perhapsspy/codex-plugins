@@ -1,0 +1,22 @@
+{
+  "name": "perhapsspy",
+  "interface": {
+    "displayName": "perhapsspy Plugins"
+  },
+  "plugins": [
+    {
+      "name": "project-legibility",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/perhapsspy/project-legibility.git",
+        "path": "./plugins/project-legibility",
+        "sha": "eab4509bab949c3dafbdbc169626e9eb5f1925c2"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}
