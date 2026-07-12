@@ -1,8 +1,8 @@
-# perhapsspy Codex Plugins
+# perhapsspy Plugins
 
 [한국어](README.md)
 
-This repository lists the Codex plugins published by perhapsspy. Each product repository owns its code and releases; this catalog records the reviewed commit that Codex installs.
+This marketplace installs and updates plugins published by perhapsspy. See each linked product repository for its description and release notes.
 
 ## Install
 
@@ -20,11 +20,9 @@ codex plugin add project-legibility@perhapsspy
 
 ## Plugins
 
-| Name | Purpose | Source |
+| Name | Install | Product docs |
 |---|---|---|
-| Project Legibility | Skills for continuing repository work across tasks and checking port sources, async state, and documentation | [perhapsspy/project-legibility](https://github.com/perhapsspy/project-legibility) |
-
-Usage and release notes for each plugin live in its source repository.
+| Project Legibility | `codex plugin add project-legibility@perhapsspy` | [perhapsspy/project-legibility](https://github.com/perhapsspy/project-legibility) |
 
 ## Update and remove
 

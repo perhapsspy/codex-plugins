@@ -1,8 +1,8 @@
-# perhapsspy Codex 플러그인
+# perhapsspy 플러그인
 
 [English](README.en.md)
 
-이 저장소는 perhapsspy가 공개하는 Codex 플러그인 목록입니다. 각 플러그인의 코드와 릴리스는 제품 저장소에 있고, 여기에는 Codex가 설치할 검증된 commit만 기록합니다.
+perhapsspy가 공개하는 플러그인을 설치하고 업데이트하기 위한 marketplace입니다. 각 제품의 설명과 변경 내역은 연결된 저장소에서 확인할 수 있습니다.
 
 ## 설치
 
@@ -20,11 +20,9 @@ codex plugin add project-legibility@perhapsspy
 
 ## 플러그인
 
-| 이름 | 용도 | 소스 |
+| 이름 | 설치 | 제품 문서 |
 |---|---|---|
-| Project Legibility | 여러 작업에 걸친 저장소 개발을 이어가고 포팅 기준, 비동기 상태와 문서를 점검하는 스킬 묶음 | [perhapsspy/project-legibility](https://github.com/perhapsspy/project-legibility) |
-
-각 플러그인의 사용법과 변경 내역은 소스 저장소에서 확인할 수 있습니다.
+| Project Legibility | `codex plugin add project-legibility@perhapsspy` | [perhapsspy/project-legibility](https://github.com/perhapsspy/project-legibility) |
 
 ## 업데이트와 제거
 
