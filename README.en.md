@@ -20,9 +20,9 @@ codex plugin add project-legibility@perhapsspy
 
 ## Plugins
 
-| Name | Install | Product docs |
-|---|---|---|
-| Project Legibility | `codex plugin add project-legibility@perhapsspy` | [perhapsspy/project-legibility](https://github.com/perhapsspy/project-legibility) |
+| Name | Install | Product docs | Release notes |
+|---|---|---|---|
+| Project Legibility | `codex plugin add project-legibility@perhapsspy` | [Overview and usage](https://github.com/perhapsspy/project-legibility/blob/main/README.en.md) | [Changelog](https://github.com/perhapsspy/project-legibility/blob/main/CHANGELOG.en.md) |
 
 ## Update and remove
 

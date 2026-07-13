@@ -20,9 +20,9 @@ codex plugin add project-legibility@perhapsspy
 
 ## 플러그인
 
-| 이름 | 설치 | 제품 문서 |
-|---|---|---|
-| Project Legibility | `codex plugin add project-legibility@perhapsspy` | [perhapsspy/project-legibility](https://github.com/perhapsspy/project-legibility) |
+| 이름 | 설치 | 제품 문서 | 변경 내역 |
+|---|---|---|---|
+| Project Legibility | `codex plugin add project-legibility@perhapsspy` | [소개와 사용법](https://github.com/perhapsspy/project-legibility#readme) | [릴리스 노트](https://github.com/perhapsspy/project-legibility/blob/main/CHANGELOG.md) |
 
 ## 업데이트와 제거
 
