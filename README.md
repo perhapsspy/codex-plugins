@@ -53,7 +53,12 @@ codex plugin marketplace remove perhapsspy
 
 ## 관리
 
-카탈로그를 바꾸는 방법은 [CONTRIBUTING.md](CONTRIBUTING.md)에 있습니다. 모든 원격 플러그인은 branch나 tag 대신 전체 commit SHA로 고정하며, CI에서 해당 경로의 manifest를 확인합니다.
+플러그인 기능, 문서와 manifest는 소스 저장소에서 먼저 변경하고 공개한 뒤, 이 카탈로그에는 해당 commit의 전체 SHA를 고정합니다. 변경 후 다음 검증을 실행합니다.
+
+```bash
+python3 -m unittest discover -s tests -p 'test_*.py' -v
+python3 scripts/validate_marketplace.py --verify-remote
+```
 
 ## 라이선스
 

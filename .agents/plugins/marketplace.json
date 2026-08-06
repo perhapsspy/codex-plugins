@@ -38,7 +38,7 @@
         "source": "git-subdir",
         "url": "https://github.com/perhapsspy/chatgpt-pro-reasoner.git",
         "path": "./plugins/chatgpt-pro-reasoner",
-        "sha": "04b93b7f8832e1ff482267007898a81978bf6633"
+        "sha": "c8b5a121932909abbf3638e0ed430c1b20e7ebc4"
       },
       "policy": {
         "installation": "AVAILABLE",

@@ -53,7 +53,12 @@ codex plugin marketplace remove perhapsspy
 
 ## Maintenance
 
-See [CONTRIBUTING.en.md](CONTRIBUTING.en.md) for catalog changes. Every remote plugin is pinned to a full commit SHA rather than a branch or tag, and CI checks the manifest at that path.
+Change and publish plugin behavior, documentation, and manifests in the source repository first, then pin the full commit SHA in this catalog. Run these checks after every catalog change:
+
+```bash
+python3 -m unittest discover -s tests -p 'test_*.py' -v
+python3 scripts/validate_marketplace.py --verify-remote
+```
 
 ## License
 
