@@ -31,6 +31,20 @@
         "authentication": "ON_INSTALL"
       },
       "category": "Productivity"
+    },
+    {
+      "name": "chatgpt-pro-reasoner",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/perhapsspy/chatgpt-pro-reasoner.git",
+        "path": "./plugins/chatgpt-pro-reasoner",
+        "sha": "04b93b7f8832e1ff482267007898a81978bf6633"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
     }
   ]
 }
