@@ -24,7 +24,7 @@
         "source": "git-subdir",
         "url": "https://github.com/perhapsspy/judgment-craft.git",
         "path": "./plugins/judgment-craft",
-        "sha": "34ced7ba27e9f7d0dac0b3206724360b4bb775bd"
+        "sha": "b4b886bdeba4e7b1023d64fbe242b4623ef11ab6"
       },
       "policy": {
         "installation": "AVAILABLE",
