@@ -53,7 +53,7 @@ codex plugin marketplace remove perhapsspy
 
 ## 관리
 
-플러그인 기능, 문서와 manifest는 소스 저장소에서 먼저 변경하고 공개한 뒤, 이 카탈로그에는 해당 commit의 전체 SHA를 고정합니다. 변경 후 다음 검증을 실행합니다.
+플러그인 기능, 문서와 manifest는 소스 저장소에서 먼저 변경하고 공개한 뒤, 이 카탈로그에는 해당 commit의 전체 SHA를 고정합니다. Project Legibility pin은 그 저장소의 `scripts/release.py publish`가 갱신과 검증을 소유하므로 수동으로 다시 처리하지 않습니다. 다른 catalog 변경은 다음 검증을 실행합니다.
 
 ```bash
 python3 -m unittest discover -s tests -p 'test_*.py' -v

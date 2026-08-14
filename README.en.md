@@ -53,7 +53,7 @@ codex plugin marketplace remove perhapsspy
 
 ## Maintenance
 
-Change and publish plugin behavior, documentation, and manifests in the source repository first, then pin the full commit SHA in this catalog. Run these checks after every catalog change:
+Change and publish plugin behavior, documentation, and manifests in the source repository first, then pin the full commit SHA in this catalog. The Project Legibility repository's `scripts/release.py publish` owns its pin update and validation, so do not repeat that work by hand. Run these checks for other catalog changes:
 
 ```bash
 python3 -m unittest discover -s tests -p 'test_*.py' -v
