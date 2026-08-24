@@ -19,20 +19,6 @@
       "category": "Developer Tools"
     },
     {
-      "name": "judgment-craft",
-      "source": {
-        "source": "git-subdir",
-        "url": "https://github.com/perhapsspy/judgment-craft.git",
-        "path": "./plugins/judgment-craft",
-        "sha": "b4b886bdeba4e7b1023d64fbe242b4623ef11ab6"
-      },
-      "policy": {
-        "installation": "AVAILABLE",
-        "authentication": "ON_INSTALL"
-      },
-      "category": "Productivity"
-    },
-    {
       "name": "chatgpt-pro-reasoner",
       "source": {
         "source": "git-subdir",
