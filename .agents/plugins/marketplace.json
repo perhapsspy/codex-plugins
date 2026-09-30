@@ -10,7 +10,7 @@
         "source": "git-subdir",
         "url": "https://github.com/perhapsspy/project-legibility.git",
         "path": "./plugins/project-legibility",
-        "sha": "65b22f5a9696041bfd5e2b88a90bfb2d28c35648"
+        "sha": "16130b1a878bb1ccc631f840836a355cc181d685"
       },
       "policy": {
         "installation": "AVAILABLE",
