@@ -19,9 +19,9 @@ codex plugin add project-legibility@perhapsspy
 codex plugin add chatgpt-pro-reasoner@perhapsspy
 ```
 
-## Claude Code 게시
+## Claude Code 설치
 
-Project Legibility의 동시 지원 release가 `.claude-plugin/marketplace.json`을 생성하고 Codex catalog와 같은 release commit을 고정합니다. 해당 catalog 게시 뒤 다음 명령을 사용합니다.
+Claude catalog는 Project Legibility를 Codex catalog와 같은 release commit에 고정합니다. 다음 명령으로 설치합니다.
 
 ```bash
 claude plugin marketplace add perhapsspy/codex-plugins

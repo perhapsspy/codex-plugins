@@ -19,9 +19,9 @@ codex plugin add project-legibility@perhapsspy
 codex plugin add chatgpt-pro-reasoner@perhapsspy
 ```
 
-## Claude Code publication
+## Claude Code installation
 
-A Project Legibility dual-client release creates `.claude-plugin/marketplace.json` and pins it to the same release commit as the Codex catalog. After that catalog is published:
+The Claude catalog pins Project Legibility to the same release commit as the Codex catalog. Install it with:
 
 ```bash
 claude plugin marketplace add perhapsspy/codex-plugins
