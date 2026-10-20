@@ -19,6 +19,17 @@ codex plugin add project-legibility@perhapsspy
 codex plugin add chatgpt-pro-reasoner@perhapsspy
 ```
 
+## Claude Code publication
+
+A Project Legibility dual-client release creates `.claude-plugin/marketplace.json` and pins it to the same release commit as the Codex catalog. After that catalog is published:
+
+```bash
+claude plugin marketplace add perhapsspy/codex-plugins
+claude plugin install project-legibility@perhapsspy
+```
+
+The publisher validator checks matching source identities and SHAs and the pinned `.claude-plugin/plugin.json`. Only plugins listed in the Claude catalog are offered there.
+
 ## Plugins
 
 | Name | Install | Product docs | Release notes |
@@ -49,7 +60,7 @@ codex plugin marketplace remove perhapsspy
 
 ## Maintenance
 
-Change and publish plugin behavior, documentation, and manifests in the source repository first, then pin the full commit SHA in this catalog. The Project Legibility repository's `scripts/release.py publish` owns its pin update and validation, so do not repeat that work by hand. Run these checks for other catalog changes:
+Change and publish plugin behavior, documentation, and manifests in the source repository first, then pin the full commit SHA in this catalog. The Project Legibility repository's `scripts/release.py publish` owns its updates to both catalog pins and their validation, so do not repeat that work by hand. Run these checks for other catalog changes:
 
 ```bash
 python3 -m unittest discover -s tests -p 'test_*.py' -v

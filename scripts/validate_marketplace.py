@@ -15,6 +15,7 @@ from urllib.request import Request, urlopen
 
 
 MARKETPLACE_REL = Path(".agents/plugins/marketplace.json")
+CLAUDE_MARKETPLACE_REL = Path(".claude-plugin/marketplace.json")
 MARKETPLACE_NAME = "perhapsspy"
 MARKETPLACE_DISPLAY_NAME = "perhapsspy Plugins"
 
@@ -97,7 +98,51 @@ def validate_marketplace(
             remote_loader=loader,
         )
 
+    claude_path = repo_root.resolve() / CLAUDE_MARKETPLACE_REL
+    if claude_path.exists():
+        validate_claude_marketplace(claude_path, plugins, errors, verify_remote=verify_remote, remote_loader=loader)
     return sorted(errors)
+
+
+def validate_claude_marketplace(
+    path: Path, codex_plugins: list[Any], errors: list[str], *,
+    verify_remote: bool, remote_loader: RemoteLoader,
+) -> None:
+    catalog = load_json(path, errors)
+    if not isinstance(catalog, dict):
+        if catalog is not None:
+            add_error(errors, "claude marketplace", "root must be an object")
+        return
+    validate_exact_fields(catalog, {"name", "owner", "description", "plugins"}, "claude marketplace", errors)
+    require_exact(catalog, "name", MARKETPLACE_NAME, "claude marketplace", errors)
+    if catalog.get("owner") != {"name": "perhapsspy"}:
+        add_error(errors, "claude marketplace.owner", "must name perhapsspy")
+    if not isinstance(catalog.get("description"), str) or not catalog["description"].strip():
+        add_error(errors, "claude marketplace.description", "must be a non-empty string")
+    entries = catalog.get("plugins")
+    if not isinstance(entries, list) or not entries:
+        add_error(errors, "claude marketplace.plugins", "must be a non-empty array")
+        return
+    by_name = {entry.get("name"): entry for entry in codex_plugins if isinstance(entry, dict) and isinstance(entry.get("name"), str)}
+    seen = set()
+    for index, entry in enumerate(entries):
+        location = f"claude marketplace.plugins[{index}]"
+        if not isinstance(entry, dict):
+            add_error(errors, location, "must be an object")
+            continue
+        validate_exact_fields(entry, {"name", "source"}, location, errors)
+        name = entry.get("name")
+        if not isinstance(name, str) or name not in by_name:
+            add_error(errors, location, "must identify a plugin in the Codex catalog")
+            continue
+        if name in seen:
+            add_error(errors, location, "duplicate plugin name")
+        seen.add(name)
+        source = entry.get("source")
+        if source != by_name[name].get("source"):
+            add_error(errors, f"{location}.source", "must match the Codex release source and SHA")
+        if verify_remote and validate_source(source, name, location, errors):
+            verify_remote_manifest(name, source, f"{location}.source", errors, remote_loader, manifest_directory=".claude-plugin")
 
 
 def validate_plugin_entry(
@@ -207,10 +252,12 @@ def verify_remote_manifest(
     location: str,
     errors: list[str],
     remote_loader: RemoteLoader,
+    *,
+    manifest_directory: str = ".codex-plugin",
 ) -> None:
     try:
         manifest_url = build_github_manifest_url(
-            source["url"], source["sha"], source["path"]
+            source["url"], source["sha"], source["path"], manifest_directory
         )
     except ValueError as exc:
         add_error(errors, f"{location}.url", str(exc))
@@ -242,7 +289,7 @@ def verify_remote_manifest(
         )
 
 
-def build_github_manifest_url(git_url: str, sha: str, plugin_path: str) -> str:
+def build_github_manifest_url(git_url: str, sha: str, plugin_path: str, manifest_directory: str = ".codex-plugin") -> str:
     parsed = urlsplit(git_url)
     if parsed.hostname != "github.com":
         raise ValueError("remote verification currently supports github.com Git URLs")
@@ -256,7 +303,7 @@ def build_github_manifest_url(git_url: str, sha: str, plugin_path: str) -> str:
     remote_path = plugin_path.removeprefix("./")
     manifest_parts = [
         *(quote(part, safe="") for part in remote_path.split("/")),
-        ".codex-plugin",
+        manifest_directory,
         "plugin.json",
     ]
     manifest_path = "/".join(manifest_parts)

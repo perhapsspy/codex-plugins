@@ -208,5 +208,52 @@ class MarketplaceValidationTests(unittest.TestCase):
         self.assert_error_contains(errors, "supports github.com")
 
 
+class ClaudeMarketplaceTests(unittest.TestCase):
+    def validate_pair(self, mutate=lambda c: None, loader=None):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            codex = valid_catalog()
+            claude = {"name": "perhapsspy", "owner": {"name": "perhapsspy"},
+                      "description": "perhapsspy plugins for Claude Code",
+                      "plugins": [{"name": "project-legibility", "source": copy.deepcopy(codex["plugins"][0]["source"])}]}
+            mutate(claude)
+            for relative, catalog in [(VALIDATOR.MARKETPLACE_REL, codex), (VALIDATOR.CLAUDE_MARKETPLACE_REL, claude)]:
+                path = root / relative
+                path.parent.mkdir(parents=True)
+                path.write_text(json.dumps(catalog))
+            return VALIDATOR.validate_marketplace(root, verify_remote=loader is not None, remote_loader=loader)
+
+    def test_matching_sources_load_both_native_manifests(self):
+        urls = []
+        def load(url):
+            urls.append(url)
+            return {"name": "project-legibility", "version": "1.0.0"}
+        self.assertEqual([], self.validate_pair(loader=load))
+        self.assertEqual(2, len(urls))
+        self.assertTrue(any("/.claude-plugin/" in url for url in urls))
+        self.assertTrue(all(VALID_SHA in url for url in urls))
+
+    def test_release_pin_drift_is_rejected(self):
+        errors = self.validate_pair(lambda c: c["plugins"][0]["source"].update(sha="a" * 40))
+        self.assertTrue(any("must match" in error for error in errors))
+
+    def test_codex_only_manifest_does_not_prove_claude_support(self):
+        def load(url):
+            if "/.claude-plugin/" in url:
+                raise VALIDATOR.RemoteManifestError("Claude manifest missing")
+            return {"name": "project-legibility", "version": "1.0.0"}
+        errors = self.validate_pair(loader=load)
+        self.assertTrue(any("Claude manifest missing" in error for error in errors))
+
+    def test_unknown_or_duplicate_plugins_are_rejected(self):
+        for change in [lambda c: c["plugins"][0].update(name="unknown"),
+                       lambda c: c["plugins"].append(copy.deepcopy(c["plugins"][0]))]:
+            with self.subTest(change=change):
+                self.assertTrue(self.validate_pair(change))
+
+    def test_host_fields_cannot_leak_into_claude_catalog(self):
+        self.assertTrue(self.validate_pair(lambda c: c.update(interface={"displayName": "wrong host"})))
+
+
 if __name__ == "__main__":
     unittest.main()
